@@ -143,7 +143,23 @@ Here we see what is in the data such as errors, inconsistencies, bugs and corrup
   3. There are 5 columns that contain the information we need to complete our objective.
   4. There appears to be more columns than we need. We will need to remove these columns
 
+## Data Cleaning
+- What should we expect the data to look like after cleaning? (What constraints should we add? What should it contain?)
 
+We are looking to improve the dataset to make sure it is structured and it is ready to analyzed
+
+The clean data criteria includes:
+
+- Only use columns that are relevant to the objective
+- All data types should be suited for the information included in the column
+- There should be no null values and complete data throughout all the columns
+
+This table below outlines the constraints on our cleaned dataset
+
+| Property | Description |
+| --- | --- |
+| Number of Rows | 240 |
+| Number of Columns | 6 |
 
 
 
