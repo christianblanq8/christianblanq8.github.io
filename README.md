@@ -245,7 +245,32 @@ FROM
    online_sales_data
 
 ```
-Insert Row Image
+![Row Count Check](assets/images/RowCount.PNG)
+
+## Column Count Check
+### SQL query
+
+```sql
+
+/*
+	Column Count
+*/
+
+SELECT
+	COUNT(*) AS column_count
+FROM
+	INFORMATION_SCHEMA.COLUMNS
+WHERE
+	TABLE_NAME = 'view_sales_data'
+   
+```
+### Output
+![Column Count Check](assets/images/Column_Count.PNG)
+
+## Data Type Check
+### SQL query
+
+
    
 
 
