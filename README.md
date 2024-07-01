@@ -154,14 +154,99 @@ The clean data criteria includes:
 - All data types should be suited for the information included in the column
 - There should be no null values and complete data throughout all the columns
 
-This table below outlines the constraints on our cleaned dataset
+The table below outlines the constraints on our cleaned dataset
 
 | Property | Description |
 | --- | --- |
 | Number of Rows | 240 |
 | Number of Columns | 6 |
 
+This table is a tabular representation of the expected schema for clean data:
 
+| Column Name| Data type | Nullable | 
+| --- | --- | --- |
+| Product Name | VARCHAR | NO |
+| UNIT PRICE | INTEGER | NO |
+| UNITS SOLD | INTEGER | NO |
+| TOTAL REVENUE | INTEGER | NO |
+
+- What are the steps to clean the data and filter it our desired format?
+
+1. Remove unnecessary columns
+2. Change Date format from "String" to "Date"
+3. Rename columns if neccessary
+
+
+
+### Transform the data
+
+```sql
+
+/*
+ # 1. Select the required columns
+ # 2. Modify the date column
+*/
+SELECT 
+		CAST(Date as DATE) as Date,
+		`Product Name`,
+		`Product Category`,
+		`Unit Price`,
+		`Units Sold`,
+		`Total Revenue`,
+		`Region`
+        
+FROM online_sales_data
+
+```
+
+### Create the SQL View
+
+```sql
+/*
+ # 1. Create a view to store the transformed data
+ # 2. Cast the date from string to date
+ # 3. Select the required columns from online_sales_data SQL Table
+*/
+
+-- 1.
+ CREATE VIEW view_sales_data AS
+ online_sales_data
+
+-- 2. 
+	SELECT 
+		CAST(Date as DATE) as Date,
+		`Product Name`,
+		`Product Category`,
+		`Unit Price`,
+		`Units Sold`,
+		`Total Revenue`,
+		`Region`
+        
+-- 3.
+FROM online_sales_data
+
+```
+
+# Testing
+
+- What are qualities are we looking for when transforming the data?
+
+Here are some quality tests conducted:
+
+## Row Count Check 
+
+```sql
+/*
+  Row count
+*/
+SELECT
+ COUNT(*) AS row_count
+FROM 
+   online_sales_data
+
+```
+Insert Row Image
+   
 
 
 
