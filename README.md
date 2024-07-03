@@ -270,6 +270,24 @@ WHERE
 ## Data Type Check
 ### SQL query
 
+```sql
+
+/*
+# Check the data types of each column from the view by checking the INFORMATION SCHEMA view
+*/
+
+-- 1.
+SELECT
+    COLUMN_NAME,
+    DATA_TYPE
+FROM
+    INFORMATION_SCHEMA.COLUMNS
+WHERE
+    TABLE_NAME = 'view_sales_data';
+```
+### Output
+![Data type check](assets/images.SalesDataType.PNG)
+
 
    
 
