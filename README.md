@@ -294,7 +294,7 @@ WHERE
 
 - What does the dashboard look like?
 
-![Gif of Power BI Dashboard](assets/images/online_sales_visual.gif)
+![Gif of Power BI Dashboard](assets/images/online_sales_visual2.gif)
 
 Displays the online sales of 2024 so far.
 
