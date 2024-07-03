@@ -286,7 +286,7 @@ WHERE
     TABLE_NAME = 'view_sales_data';
 ```
 ### Output
-![Data type check](assets/images/SalesDataType.PNG)
+![Data type check](assets/images/SalesDataType2.PNG)
 
 # Visualization
 
