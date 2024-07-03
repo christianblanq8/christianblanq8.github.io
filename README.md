@@ -288,7 +288,17 @@ WHERE
 ### Output
 ![Data type check](assets/images.SalesDataType.PNG)
 
-#Visualization
+# Visualization
+
+## Results
+
+- What does the dashboard look like?
+
+![Gif of Power BI Dashboard](assets/images/online_sales_visual.gif)
+
+Displays the online sales of 2024 so far.
+
+
 
 
    
