@@ -288,6 +288,8 @@ WHERE
 ### Output
 ![Data type check](assets/images.SalesDataType.PNG)
 
+#Visualization
+
 
    
 
