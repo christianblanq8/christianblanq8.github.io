@@ -310,6 +310,19 @@ When I made the dashboard I made an interactive line graph which demonstrated ho
 
 I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to lean the data for the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, tensorflow, sklearn, etc. These libraries helped me develop a model that could predict what sales could be based on Units Sold and Total Revenue.
 
+```python
+import os
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
+from sktime.forecasting.fbprophet import Prophet
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
 ![Python_Library](assets/images/PythonLibrary.PNG)
 
 These are the packages I used
