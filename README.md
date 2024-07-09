@@ -9,27 +9,27 @@
 
 # Table of Contents
 
-- [Objective]
-- [Data Source]
-- [Stages]
-- [Development]
-  - [Pseudocode]
-  - [Data Exploration]
-  - [Data Cleaning]
-  - [Transform the Data]
-  - [Create the SQL View]
-- [Testing]
-   - [Data Quality Tests]
-- [Visualization]
-  - [Results]
-- [Analysis]
-  - [Findings]
-  - [Models]
-  - [Discovery]
-- [Recommendation]
+- [Objective] (#objective)
+- [Data Source](#data-source)
+- [Stages](#stages)
+- [Development](#development)
+  - [Pseudocode](#pseudocode)
+  - [Data Exploration](#Data_Exploration)
+  - [Data Cleaning](#data_cleaning)
+  - [Transform the Data](#transform_the_data)
+  - [Create the SQL View](#create_the_sql_view)
+- [Testing](#testing)
+   - [Data Quality Tests](#data_qualitytests)
+- [Visualization](#visualization)
+  - [Results](#results)
+- [Analysis](#analysis)
+  - [Findings](#findings)
+  - [Models](#models)
+  - [Discovery](#discovery)
+- [Recommendation](#recommendation)
   - [Potential ROI]
   - [Potential Course of Actions]
-- [Conclusion]
+- [Conclusion](#conclusion)
 
 
 
@@ -324,7 +324,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-These are the packages I used
+## These are the packages I used
 
 ``` python
 def encode_dates(df,column):
@@ -359,7 +359,7 @@ def preprocess_inputs(df):
     return X_train, X_test, y_train, y_test
 ```
 
-Convert the dataframe to Train/Test 
+## Convert the dataframe to Train/Test 
 
 ``` python
 inputs = tf.keras.Input(shape=(X_train.shape[1],))
@@ -398,17 +398,17 @@ history = model.fit(
 )
 ```
 
-Train the data
+## Train the data
 
 ![Results](assets/images/Results.PNG)
 
 ![Results1](assets/images/Results2.PNG)
 
-Results from the Model
+## Results from the Model
 
 ![Graph](assets/images/Graph.PNG)
 
-Actual Sales vs Predicted Sales
+## Actual Sales vs Predicted Sales
 
 
    
