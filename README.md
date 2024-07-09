@@ -323,17 +323,80 @@ from sktime.forecasting.fbprophet import Prophet
 import matplotlib.pyplot as plt
 import seaborn as sns
 ```
-![Python_Library](assets/images/PythonLibrary.PNG)
 
 These are the packages I used
 
-![Preprocess_Input](assets/images/Preprocessing.PNG)
+``` python
+def encode_dates(df,column):
+    df = df.copy()
+    df[column] = pd.to_datetime(df[column])
+    df[column + '_year'] = df[column].apply(lambda x: x.year)
+    df[column + '_month'] = df[column].apply(lambda x: x.month)
+    df[column + '_day'] = df[column].apply(lambda x: x.day)
+    df = df.drop(column, axis=1)
+    return df
+```
+
+``` python
+def preprocess_inputs(df):
+    df = df.copy()
+    #Drop unnecessary columns
+    df = df.drop(['Transaction ID','Region','Payment Method','Product Name', 'Product Category'],axis = 1)
+    df = encode_dates(df, column = 'Date')
+
+    #Split df into X and y
+    y = df['Total_Revenue']
+    X = df.drop('Total_Revenue', axis =1 )
+    #Train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = 0.7, shuffle = False, random_state = 1)
+
+    # Scale X
+    scaler = StandardScaler()
+    scaler.fit(X_train)
+    X_train = pd.DataFrame(scaler.transform(X_train), columns = X.columns)
+    X_test = pd.DataFrame(scaler.transform(X_test), columns = X.columns)
+
+    return X_train, X_test, y_train, y_test
+```
 
 Convert the dataframe to Train/Test 
 
-![Train_the_data](assets/images/Training.PNG)
+``` python
+inputs = tf.keras.Input(shape=(X_train.shape[1],))
+x = tf.keras.layers.Dense(200, activation ='relu')(inputs)
+x = tf.keras.layers.Dense(200, activation ='relu')(x)
 
-![Train_the_data](assets/images/Training2.PNG)
+#Predicted Price
+outputs = tf.keras.layers.Dense(1, activation = 'linear')(x)
+
+model = tf.keras.Model(inputs = inputs, outputs = outputs)
+
+print(model.summary())
+```
+
+``` python
+model.compile(
+    optimizer = 'adam',
+    loss = 'mse'
+)
+
+history = model.fit(
+    X_train,
+    y_train,
+    validation_split = 0.2,
+    batch_size = 32,
+    epochs = 100,
+    callbacks = [
+        tf.keras.callbacks.EarlyStopping(
+            monitor = 'val_loss',
+            patience = 5,
+            restore_best_weights = True
+
+        ),
+        tf.keras.callbacks.ReduceLROnPlateau()
+    ]
+)
+```
 
 Train the data
 
