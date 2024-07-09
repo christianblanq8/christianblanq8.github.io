@@ -298,6 +298,7 @@ WHERE
 
 Displays the online sales of 2024 so far.
 
+# Analysis
 
 
 
