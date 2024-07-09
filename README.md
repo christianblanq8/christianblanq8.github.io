@@ -24,7 +24,7 @@
   - [Results]
 - [Analysis]
   - [Findings]
-  - [Validation]
+  - [Models]
   - [Discovery]
 - [Recommendation]
   - [Potential ROI]
@@ -300,6 +300,39 @@ Displays the online sales of 2024 so far.
 
 # Analysis
 
+## Findings
+- When you made the dashboard what did you notice?
+
+When I made the dashboard I made an interactive line graph which demonstrated how the sales were during the time of
+01/01/2024 - 08/31/2024. The graph was based on the Total Revenue as the y-axis and Date as the x-axis. During Februaryit was at a decline and it made a brief increase in sale for approximately a month and afterwards, it continued to decline.
+
+- How can I predict the sales of the dataset?
+
+I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to lean the data for the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, tensorflow, sklearn, etc. These libraries helped me develop a model that could predict what sales could be based on Units Sold and Total Revenue.
+
+![Python_Library](assets/images/PythonLibrary.PNG)
+
+These are the packages I used
+
+![Preprocess_Input](assets/images/Preprocessing.PNG)
+
+Convert the dataframe to Train/Test 
+
+![Train_the_data](assets/images/Training.PNG)
+
+![Train_the_data](assets/images/Training2.PNG)
+
+Train the data
+
+![Results](assets/images/Results.PNG)
+
+![Results1](assets/images/Results2.PNG)
+
+Results from the Model
+
+![Graph](assets/images/Graph.PNG)
+
+Actual Sales vs Predicted Sales
 
 
    
