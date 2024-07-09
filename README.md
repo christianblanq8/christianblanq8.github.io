@@ -14,7 +14,7 @@
 - [Stages](#stages)
 - [Development](#development)
   - [Pseudocode](#pseudocode)
-  - [Data Exploration](#Data_Exploration)
+  - [Data Exploration](#data_exploration)
   - [Data Cleaning](#data_cleaning)
   - [Transform the Data](#transform_the_data)
   - [Create the SQL View](#create_the_sql_view)
