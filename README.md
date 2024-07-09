@@ -9,7 +9,7 @@
 
 # Table of Contents
 
-- [Objective] (#objective)
+- [Objective](#objective)
 - [Data Source](#data-source)
 - [Stages](#stages)
 - [Development](#development)
