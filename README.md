@@ -311,107 +311,127 @@ When I made the dashboard I made an interactive line graph which demonstrated ho
 I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to lean the data for the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, tensorflow, sklearn, etc. These libraries helped me develop a model that could predict what sales could be based on Units Sold and Total Revenue.
 
 ```python
-import os
 import pandas as pd
 import numpy as np
-import tensorflow as tf
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import r2_score
-from sklearn.metrics import mean_squared_error
-from sktime.forecasting.fbprophet import Prophet
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 import matplotlib.pyplot as plt
-import seaborn as sns
 ```
 
 ## These are the packages I used
 
 ``` python
-def encode_dates(df,column):
-    df = df.copy()
-    df[column] = pd.to_datetime(df[column])
-    df[column + '_year'] = df[column].apply(lambda x: x.year)
-    df[column + '_month'] = df[column].apply(lambda x: x.month)
-    df[column + '_day'] = df[column].apply(lambda x: x.day)
-    df = df.drop(column, axis=1)
-    return df
+df = pd.read_csv("Online Sales Data.csv")
+df.info()
 ```
+![df_info](assets/images/dfInfo.PNG)
+
+## Extract the data from the CSV file and examine the data
 
 ``` python
-def preprocess_inputs(df):
-    df = df.copy()
-    #Drop unnecessary columns
-    df = df.drop(['Transaction ID','Region','Payment Method','Product Name', 'Product Category'],axis = 1)
-    df = encode_dates(df, column = 'Date')
 
-    #Split df into X and y
-    y = df['Total_Revenue']
-    X = df.drop('Total_Revenue', axis =1 )
-    #Train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = 0.7, shuffle = False, random_state = 1)
+df['Date'] = pd.to_datetime(df['Date'])
+df = df.rename(columns={"Total Revenue": "Total_Revenue"})
+df = df.rename(columns={"Product Category": "Product_Category"})
 
-    # Scale X
-    scaler = StandardScaler()
-    scaler.fit(X_train)
-    X_train = pd.DataFrame(scaler.transform(X_train), columns = X.columns)
-    X_test = pd.DataFrame(scaler.transform(X_test), columns = X.columns)
-
-    return X_train, X_test, y_train, y_test
 ```
 
-## Convert the dataframe to Train/Test 
+## Change the data type for column "Date" and change the name of the columns that will be used for the model
 
 ``` python
-inputs = tf.keras.Input(shape=(X_train.shape[1],))
-x = tf.keras.layers.Dense(200, activation ='relu')(inputs)
-x = tf.keras.layers.Dense(200, activation ='relu')(x)
 
-#Predicted Price
-outputs = tf.keras.layers.Dense(1, activation = 'linear')(x)
+df.isnull().sum()
 
-model = tf.keras.Model(inputs = inputs, outputs = outputs)
-
-print(model.summary())
 ```
+![df_null](assets/images/dfNull.PNG)
+
+## Check for null values
 
 ``` python
-model.compile(
-    optimizer = 'adam',
-    loss = 'mse'
-)
 
-history = model.fit(
-    X_train,
-    y_train,
-    validation_split = 0.2,
-    batch_size = 32,
-    epochs = 100,
-    callbacks = [
-        tf.keras.callbacks.EarlyStopping(
-            monitor = 'val_loss',
-            patience = 5,
-            restore_best_weights = True
+weekly_revenue = df.groupby(pd.Grouper(key='Date',freq = 'W')).sum()['Total_Revenue']
 
-        ),
-        tf.keras.callbacks.ReduceLROnPlateau()
-    ]
-)
+weekly_revenue.plot()
+
 ```
 
-## Train the data
+![df_plot1](assets/images/dfPlot1.PNG)
 
-![Results](assets/images/Results.PNG)
+## Create a dataframe with the weekly sum of revenue and plot it 
+``` python
+model = SARIMAX(weekly_revenue, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+# Fit the model
+results = model.fit()
+```
 
-![Results1](assets/images/Results2.PNG)
+## Fit the model 
 
-## Results from the Model
+``` python
 
-![Graph](assets/images/Graph.PNG)
+forecast = results.forecast(steps=12)
 
-## Actual Sales vs Predicted Sales
+# Plot the historical data and forecast
+plt.figure(figsize=(10, 6))
+plt.plot(weekly_revenue.index, weekly_revenue, label='Historical weekly Revenue')
+plt.plot(forecast.index, forecast, label='Forecasted weekly Revenue', color='red')
+plt.legend()
+plt.show()
+
+```
+![df_plot2](assets/images/dfPlot2.PNG)
+
+## Forecast the revenue for the year and plot it 
+
+``` Python
+
+Elec_df = df[df['Product_Category'].eq('Electronics')]
+e_weekly_revenue = Elec_df.groupby(pd.Grouper(key='Date',freq = 'W')).sum()['Total_Revenue']
+e_weekly_revenue.plot()
+
+```
+
+![df_plot3](assets/images/dfPlot3.PNG)
+
+## Create a dataframe with just Electronics category and plot it
+
+``` Python
+model2 = SARIMAX(e_weekly_revenue, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+results2 = model2.fit()
+forecast2 = results2.forecast(steps=12)
+
+# Plot the historical data and forecast
+plt.figure(figsize=(10, 6))
+plt.plot(e_weekly_revenue.index, e_weekly_revenue, label='Historical Weekly Revenue')
+plt.plot(forecast2.index, forecast2, label='Electronics Forecasted Weekly Revenue', color='red')
+plt.legend()
+plt.show()
+
+```
+
+![df_plot4](assets/images/dfPlot4.PNG)
+
+## Fit the model and plot it to see how investing more into Electronics would improve sales
+
+``` Python
+
+# For all categories
+forecast.describe()
+
+```
+![Forecast1](assets/images/Forecast1.PNG)
 
 
-   
+``` Python
+
+# For Electronics category
+forecast2.describe()
+
+```
+
+![Forecast2](assets/images/Forecast2.PNG)
+
+
+## Get the average weekly revenue forecast 
+
 
 
 
