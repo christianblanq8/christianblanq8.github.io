@@ -417,7 +417,7 @@ plt.show()
 forecast.describe()
 
 ```
-![Forecast1](assets/images/Forecast1.PNG)
+![Forecast1](assets/images/Forecast2.PNG)
 
 
 ``` Python
@@ -427,7 +427,7 @@ forecast2.describe()
 
 ```
 
-![Forecast2](assets/images/Forecast2.PNG)
+![Forecast2](assets/images/Forecast1.PNG)
 
 
 ## Get the average weekly revenue forecast 
