@@ -310,7 +310,7 @@ When I made the dashboard I made an interactive line graph which demonstrated ho
 
 I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to lean the data for the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, tensorflow, sklearn, etc. These libraries helped me develop a model that could predict what sales could be based on Units Sold and Total Revenue.
 
-## These are the packages I used
+### These are the packages I used
 ```python
 import pandas as pd
 import numpy as np
@@ -319,7 +319,7 @@ import matplotlib.pyplot as plt
 ```
 
 
-## Extract the data from the CSV file and examine the data
+### Extract the data from the CSV file and examine the data
 ``` python
 df = pd.read_csv("Online Sales Data.csv")
 df.info()
@@ -327,7 +327,7 @@ df.info()
 ![df_info](assets/images/dfInfo.PNG)
 
 
-## Change the data type for column "Date" and change the name of the columns that will be used for the model
+### Change the data type for column "Date" and change the name of the columns that will be used for the model
 ``` python
 
 df['Date'] = pd.to_datetime(df['Date'])
@@ -337,7 +337,7 @@ df = df.rename(columns={"Product Category": "Product_Category"})
 ```
 
 
-## Check for null values
+### Check for null values
 ``` python
 
 df.isnull().sum()
@@ -346,7 +346,7 @@ df.isnull().sum()
 ![df_null](assets/images/dfNull.PNG)
 
 
-## Create a dataframe with the weekly sum of revenue and plot it 
+### Create a dataframe with the weekly sum of revenue and plot it 
 ``` python
 
 weekly_revenue = df.groupby(pd.Grouper(key='Date',freq = 'W')).sum()['Total_Revenue']
@@ -357,7 +357,7 @@ weekly_revenue.plot()
 
 ![df_plot1](assets/images/dfPlot1.PNG)
 
-## Fit the model 
+### Fit the model 
 ``` python
 model = SARIMAX(weekly_revenue, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
 # Fit the model
@@ -365,7 +365,7 @@ results = model.fit()
 ```
 
 
-## Forecast the revenue for the year and plot it 
+### Forecast the revenue for the year and plot it 
 ``` python
 
 forecast = results.forecast(steps=12)
@@ -381,7 +381,7 @@ plt.show()
 ![df_plot2](assets/images/dfPlot2.PNG)
 
 
-## Create a dataframe with just Electronics category and plot it
+### Create a dataframe with just Electronics category and plot it
 ``` Python
 
 Elec_df = df[df['Product_Category'].eq('Electronics')]
@@ -393,7 +393,7 @@ e_weekly_revenue.plot()
 ![df_plot3](assets/images/dfPlot3.PNG)
 
 
-## Fit the model and plot it to see how investing more into Electronics would improve sales
+### Fit the model and plot it to see how investing more into Electronics would improve sales
 ``` Python
 model2 = SARIMAX(e_weekly_revenue, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
 results2 = model2.fit()
@@ -411,7 +411,7 @@ plt.show()
 ![df_plot4](assets/images/dfPlot4.PNG)
 
 
-## Get the average weekly revenue forecast 
+### Get the average weekly revenue forecast 
 ``` Python
 
 # For all categories
