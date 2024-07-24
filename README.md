@@ -355,7 +355,7 @@ weekly_revenue.plot()
 
 ```
 
-## Model
+# Model
 
 ![df_plot1](assets/images/dfPlot1.PNG)
 
