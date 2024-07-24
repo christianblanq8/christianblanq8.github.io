@@ -24,7 +24,7 @@
   - [Results](#results)
 - [Analysis](#analysis)
   - [Findings](#findings)
-  - [Models](#models)
+  - [Model](#models)
   - [Discovery](#discovery)
 - [Recommendation](#recommendation)
   - [Potential ROI]
