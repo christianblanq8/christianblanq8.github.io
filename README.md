@@ -27,7 +27,7 @@
   - [Model](#models)
   - [Discovery](#discovery)
 - [Recommendation](#recommendation)
-  - [Potential Course of Actions]
+  - [Potential Course of Actions](#Potential_Course_of_Action)
 - [Conclusion](#conclusion)
 
 
