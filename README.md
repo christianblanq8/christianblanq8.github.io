@@ -27,7 +27,6 @@
   - [Model](#models)
   - [Discovery](#discovery)
 - [Recommendation](#recommendation)
-  - [Potential ROI]
   - [Potential Course of Actions]
 - [Conclusion](#conclusion)
 
@@ -308,7 +307,7 @@ When I made the dashboard I made an interactive line graph which demonstrated ho
 
 - How can I predict the sales of the dataset?
 
-I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to lean the data for the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, tensorflow, sklearn, etc. These libraries helped me develop a model that could predict what sales could be based on Units Sold and Total Revenue.
+I used Jupyter Notebook to extract the data and develop a model that is able to predict sales. Just as I used SQL to push data into the dashboard, I cleaned it and took the columns I needed to produce a model. I used libraries such as pandas, numpy, SARIMA, statsmodels, etc. These libraries helped me develop a model that could predict what sales could be.
 
 ### These are the packages I used
 ```python
@@ -432,8 +431,25 @@ forecast2.describe()
 
 ![Forecast2](assets/images/Forecast2.PNG)
 
+# Recommendation
 
+- What do you recommend based on the new insights?
 
+  1. Based on my insights, Electronics generated the most income and the reason for the spikes within our graphs. Electronics have the most potential is saving this company.
+  2. I also noticed that books and clothing have the most units sold and this good to note because we want to understand what our consumers want.
+  3. The product categories with the least revenue were beauty products and books. We need to understand what budget cuts we need to make in order for the comapny to succeed.
+
+## Potential Course of Action
+
+- What course of action should we take and why?
+
+Based on my analysis, this comapny will close before the end of this year because we are losing more money with every month that goes by. We will need to invest more into what generates the most income, but also give what the people what they want. Based on the model I created, I noticed that in order to keep this company running, we will need to invest into electronics. It generates the most income, but we will need to drop a product category in order to shift our financial focus.
+
+My recommendation is to drop beauty products because it generated the least revenue and was second to last in units sold. I will also note that books had the least revenue, but was second in most units sold. We do not want to lose our consumers so we will keep it. 
+
+# Conclusion
+
+Based on the graphs I created and the models to forecast where the comapny would be at the end of the year, this company will shut down unless action is taken. The product category to prevent this company from closing was electronics. The reason for the decline was because of investing our money into beauty products. They sold the least units while also being close to selling the least revenue. This company will not survive unless we invest into electronics and drop beauty products from our website.
 
 
 
